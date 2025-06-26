@@ -1,0 +1,65 @@
+# AI Compliance SEO Website Crawler and Analyzer
+# Requirements file for Python dependencies
+
+# Web scraping and HTTP requests
+requests>=2.31.0
+
+# HTML parsing and web content extraction
+beautifulsoup4>=4.12.0
+
+# HTML parser backend (faster than default)
+lxml>=4.9.0
+
+# URL parsing utilities (part of standard library, but specifying for clarity)
+urllib3>=2.0.0
+
+# JSON handling (standard library)
+# json - included in Python standard library
+
+# Regular expressions (standard library)
+# re - included in Python standard library
+
+# Collections utilities (standard library)
+# collections - included in Python standard library
+
+# SSL and socket operations (standard library)
+# ssl - included in Python standard library
+# socket - included in Python standard library
+
+# Date and time handling (standard library)
+# datetime - included in Python standard library
+
+# Time operations (standard library)
+# time - included in Python standard library
+
+# Optional: Enhanced features (uncomment if needed)
+
+# For more advanced text analysis
+# textstat>=0.7.3
+
+# For better SSL certificate verification
+# certifi>=2023.7.22
+
+# For enhanced HTTP session handling
+# requests-toolbelt>=1.0.0
+
+# For user agent rotation (if needed for larger scale crawling)
+# fake-useragent>=1.4.0
+
+# For better error handling and retries
+# tenacity>=8.2.0
+
+# For progress bars during crawling
+# tqdm>=4.66.0
+
+# For enhanced JSON handling
+# ujson>=5.8.0
+
+# For CSV export functionality (if you want to add CSV reports)
+# pandas>=2.0.0
+
+# For more sophisticated content analysis
+# nltk>=3.8.1
+
+# For advanced HTML cleaning
+# bleach>=6.0.0
