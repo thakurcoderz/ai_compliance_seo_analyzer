@@ -49,13 +49,40 @@ class AIComplianceSEOAnalyzer:
             print(f"❌ Error analyzing website: {str(e)}")
             return None
     
+    def clean_url(self, url):
+        """Remove fragment identifiers from URL"""
+        return url.split('#')[0]
+    
+    def is_internal_link(self, base_url, link_url):
+        """Check if a link is internal to the domain and is a content page"""
+        base_domain = urlparse(base_url).netloc
+        link_domain = urlparse(link_url).netloc
+        
+        # Must be same domain or relative
+        if base_domain != link_domain and link_domain != '':
+            return False
+            
+        # Skip common non-content URLs
+        skip_patterns = [
+            '/mailto:', '/tel:', '/javascript:', '/#', 
+            '.pdf', '.doc', '.docx', '.xls', '.xlsx',
+            '.jpg', '.jpeg', '.png', '.gif', '.svg',
+            '.css', '.js', '.xml', '.rss', '.feed'
+        ]
+        
+        for pattern in skip_patterns:
+            if pattern in link_url.lower():
+                return False
+                
+        return True
+    
     def crawl_website(self, base_url, max_pages):
         """Crawl website pages for analysis"""
         print(f"🕷️  Crawling website (max {max_pages} pages)...")
         
         pages_data = []
         visited = set()
-        to_visit = [base_url]
+        to_visit = [self.clean_url(base_url)]  # Start with cleaned base URL
         
         while to_visit and len(pages_data) < max_pages:
             url = to_visit.pop(0)
@@ -80,12 +107,31 @@ class AIComplianceSEOAnalyzer:
                     # Find internal links for further crawling
                     if len(pages_data) < max_pages:
                         links = soup.find_all('a', href=True)
-                        for link in links[:5]:  # Limit to avoid infinite crawling
+                        print(f"🔍 Found {len(links)} links on {url}")
+                        
+                        # Process more links to find more pages
+                        processed_links = 0
+                        for link in links:
+                            # Stop if we've reached the max pages limit
+                            if len(pages_data) + len(to_visit) >= max_pages:
+                                break
+                            if processed_links >= 20:  # Increased from 5 to 20
+                                break
                             href = link.get('href')
                             if href:
                                 full_url = urljoin(url, href)
-                                if self.is_internal_link(base_url, full_url) and full_url not in visited:
-                                    to_visit.append(full_url)
+                                # Clean the URL to remove fragment identifiers
+                                clean_url = self.clean_url(full_url)
+                                # Skip if the URL is just a fragment or if it's already been visited or queued
+                                if (clean_url != url and 
+                                    self.is_internal_link(base_url, clean_url) and 
+                                    clean_url not in visited and 
+                                    clean_url not in to_visit):
+                                    to_visit.append(clean_url)
+                                    processed_links += 1
+                                    print(f"  ➕ Added to queue: {clean_url}")
+                        
+                        print(f"  📋 Queue size: {len(to_visit)} pages waiting")
                     
                     print(f"✅ Analyzed: {url}")
                     time.sleep(1)  # Be respectful to the server
@@ -96,12 +142,6 @@ class AIComplianceSEOAnalyzer:
         
         print(f"📊 Crawled {len(pages_data)} pages successfully")
         return pages_data
-    
-    def is_internal_link(self, base_url, link_url):
-        """Check if a link is internal to the domain"""
-        base_domain = urlparse(base_url).netloc
-        link_domain = urlparse(link_url).netloc
-        return base_domain == link_domain or link_domain == ''
     
     def analyze_content_quality(self, pages_data):
         """Analyze content quality for AI compliance"""
@@ -343,7 +383,7 @@ class AIComplianceSEOAnalyzer:
                 question_pages += 1
             
             # Check for conversational tone indicators
-            conversational_indicators = ['you can', 'let\'s', 'here\'s how', 'follow these steps', 'you\'ll find']
+            conversational_indicators = ['you can', "let's", "here's how", "follow these steps", "you'll find"]
             if any(indicator in text_content for indicator in conversational_indicators):
                 conversational_pages += 1
             
