@@ -88,15 +88,9 @@ A comprehensive Python tool for analyzing websites' AI compliance factors in mod
    ✅ Responsive design detected
    ✅ Good response time detected
    Mobile & AI Optimization Score: 15/15
-   
-   ============================================================
-   🤖 AI COMPLIANCE SEO REPORT
-   ============================================================
-   🌐 Website: https://example.com
-   📊 Overall Score: 72.0%
-   🎯 Compliance Level: 🟡 GOOD
-   💡 Recommendation: Good compliance with room for improvement.
    ```
+
+   ![Report](docs/report.png)
 
 ## 📋 Analysis Categories
 
