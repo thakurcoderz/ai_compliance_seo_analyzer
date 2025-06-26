@@ -35,8 +35,8 @@ A comprehensive Python tool for analyzing websites' AI compliance factors in mod
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/seo-ai-complaince.git
-   cd seo-ai-complaince
+   git clone https://github.com/thakurcoderz/ai_compliance_seo_analyzer.git
+   cd ai_compliance_seo_analyzer
    ```
 
 2. **Install dependencies**
