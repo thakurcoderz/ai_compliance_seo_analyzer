@@ -60,37 +60,69 @@ A comprehensive Python tool for analyzing websites' AI compliance factors in mod
    - Choose whether to save the detailed report
 
 2. **Example Output**
-   ```
-   🤖 Starting AI Compliance Analysis for: https://example.com
-   ============================================================
-   🕷️  Crawling website (max 5 pages)...
-   ✅ Analyzed: https://example.com
-   ✅ Analyzed: https://example.com/about
-   📊 Crawled 2 pages successfully
    
-   📝 Analyzing Content Quality for AI Compliance...
-   Content Quality Score: 65/80
-   
-   ⚡ Analyzing Technical Performance...
-   ✅ SSL Certificate detected
-   Technical Performance Score: 45/50
-   
-   🧠 Analyzing Semantic Structure...
-   Semantic Structure Score: 25/35
-   
-   🤖 Analyzing AI Readiness...
-   AI Readiness Score: 20/30
-   
-   🏆 Analyzing E-E-A-T Factors...
-   E-E-A-T Score: 15/20
-   
-   📱 Analyzing Mobile & AI Optimization...
-   ✅ Responsive design detected
-   ✅ Good response time detected
-   Mobile & AI Optimization Score: 15/15
-   ```
+```
+🤖 AI Compliance SEO Analyzer
+========================================
+Enter website URL to analyze: https://www.thakurcoder.com/
+Number of pages to analyze (default 5): 
+🤖 Starting AI Compliance Analysis for: https://www.thakurcoder.com/
+============================================================
+🕷️  Crawling website (max 5 pages)...
+✅ Analyzed: https://www.thakurcoder.com/
+✅ Analyzed: https://www.thakurcoder.com/utilities
+✅ Analyzed: https://www.thakurcoder.com/bookmarks
+✅ Analyzed: https://www.thakurcoder.com/privacy
+✅ Analyzed: https://www.thakurcoder.com/about
+📊 Crawled 5 pages successfully
 
-   ![Report](docs/report.png)
+📝 Analyzing Content Quality for AI Compliance...
+Content Quality Score: 55/80
+
+⚡ Analyzing Technical Performance...
+✅ SSL Certificate detected
+Technical Performance Score: 50/50
+
+🧠 Analyzing Semantic Structure...
+Semantic Structure Score: 20/35
+
+🤖 Analyzing AI Readiness...
+AI Readiness Score: 24/30
+
+🏆 Analyzing E-E-A-T Factors...
+E-E-A-T Score: 15/20
+
+📱 Analyzing Mobile & AI Optimization...
+✅ Responsive design detected
+✅ Good response time detected
+Mobile & AI Optimization Score: 15/15
+
+============================================================
+🤖 AI COMPLIANCE SEO REPORT
+============================================================
+🌐 Website: https://www.thakurcoder.com/
+📊 Overall Score: 71.6%
+🎯 Compliance Level: 🟡 GOOD
+💡 Recommendation: Good compliance with room for improvement.
+
+📋 DETAILED BREAKDOWN:
+  • Content Quality: 55/80 (68.8%)
+  • Technical Performance: 50/50 (100.0%)
+  • Semantic Structure: 20/35 (57.1%)
+  • Ai Readiness: 24/30 (80.0%)
+  • Eat Factors: 15/20 (75.0%)
+  • Mobile Ai Optimization: 15/15 (100.0%)
+
+🚀 PRIORITY ACTIONS:
+  1. Continue monitoring and maintaining current high standards
+  2. Focus on creating fresh, expert content regularly
+
+============================================================
+
+Save detailed report to JSON file? (y/n): n
+
+✨ Analysis complete!
+```
 
 ## 📋 Analysis Categories
 
