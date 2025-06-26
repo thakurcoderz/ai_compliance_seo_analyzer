@@ -194,9 +194,14 @@ class AIComplianceSEOAnalyzer:
         
         # Clean URLs check
         clean_url_count = 0
+        # File extensions that are typically less SEO-friendly
+        unfriendly_extensions = ['.php', '.html', '.htm', '.jsp', '.asp', '.aspx', '.cgi', '.pl', '.py', '.rb', '.do', '.action']
+
         for page in pages_data:
             url_path = urlparse(page['url']).path
-            if not re.search(r'[?&=]', url_path) and not url_path.endswith('.php'):
+            # Check for query parameters, ampersands, and unfriendly file extensions
+            if (not re.search(r'[?&=]', url_path) and 
+                not any(url_path.endswith(ext) for ext in unfriendly_extensions)):
                 clean_url_count += 1
         
         if clean_url_count / len(pages_data) > 0.8:
